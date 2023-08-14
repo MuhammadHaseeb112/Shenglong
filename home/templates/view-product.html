@@ -1,0 +1,107 @@
+{% extends 'home.html'%}
+
+{% load static %}
+{% static "images" as baseUrl %}       
+
+      {% block content %}      
+
+
+<div class="container border-bottom">
+    <div class="row">
+        <div class="col-12 my-2">
+            <h3>{{add.name}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-12">
+            <div class="main-image-container">
+                <img src="{{add.img.url}}" alt="Image 1" id="main-image">
+            </div>
+            <div class="image-gallery carousel"
+              data-flickity='{ "draggable": true, "groupCells": true , "prevNextButtons": true, "pageDots": false, "wrapAround": false }'>
+                <img src="{{add.img.url}}" alt="Image 1" class="thumbnail " onclick="setMainImage(this)">
+              {% if add.img2 %}  <img src="{{add.img2.url}}" alt="Image 2" class="thumbnail" onclick="setMainImage(this)">{% endif %}
+              {% if add.img3 %}  <img src="{{add.img3.url}}" alt="Image 3" class="thumbnail" onclick="setMainImage(this)">{% endif %}
+              {% if add.img4 %}  <img src="{{add.img4.url}}" alt="Image 4" class="thumbnail" onclick="setMainImage(this)">{% endif %}
+              {% if add.img5 %}  <img src="{{add.img5.url}}" alt="Image 5" class="thumbnail" onclick="setMainImage(this)">{% endif %}
+              {% if add.img6 %}  <img src="{{add.img6.url}}" alt="Image 6" class="thumbnail" onclick="setMainImage(this)">{% endif %}
+              {% if add.img7 %}  <img src="{{add.img7.url}}" alt="Image 7" class="thumbnail" onclick="setMainImage(this)">{% endif %}
+              {% if add.img8 %}  <img src="{{add.img8.url}}" alt="Image 8" class="thumbnail" onclick="setMainImage(this)">{% endif %}
+              {% if add.img9 %}  <img src="{{add.img9.url}}" alt="Image 9" class="thumbnail" onclick="setMainImage(this)">{% endif %}
+              {% if add.img10 %}  <img src="{{add.img10.url}}" alt="Image 10" class="thumbnail" onclick="setMainImage(this)">{% endif %}
+            </div>
+              
+        </div>
+        <div class="col-7 ">
+          <div class="row">
+            <div class="col-12">
+              <table class="table table-striped mb-5">
+                <tr class="table-secondary">
+                  <td>location:</td>
+                  <td>{{add.location}}</td>
+                </tr>
+                <tr>
+                  <td>Model:</td>
+                  <td>{{add.model}}</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>Manufacturer:</td>
+                  <td>{{add.manafacture}}</td>
+                </tr>
+                <tr>
+                  <td>Price</td>
+                  <td>{{add.price}}</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>Condition:</td>
+                  <td>{% if add.new %}NEW
+                      {%else%}USED{%endif%}                    
+                  </td>
+                </tr>
+                <tr>
+                  <td>Catagory</td>
+                  <td>{{add.catagory}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 border border-2 border-primary py-4">
+              <div class="row">
+                <div class="col-12 product my-2">
+                  <h3></i>Interested in this machine?</h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 d-grid">
+                  <a  href="https://wa.me/+923095794795" class="btn p-btn">Click To Contact Seller</a>
+                </div>
+              </div>
+              <div class="row my-2">
+                <div class="col-12 text-center ">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa-thin fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-12 border-top">
+        <h3>Discription</h3>
+        <p>{{add.discription}}</p>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}

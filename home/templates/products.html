@@ -1,0 +1,131 @@
+{% extends 'home.html'%}
+
+{% load static %}
+{% static "images" as baseUrl %}    
+
+      {% block content %}
+
+
+
+      <div class="container">
+        {% for add in page_obj %}
+        <!-- card2 start  --> 
+       
+        <div class="card cc">
+          <a href="/view_product/{{add.id}}" class="link row d-flex">
+            
+            <div class="col-12 col-md-3">
+                <!-- <img src="img\agri.jpg" class="products-image" alt="product-image"> -->
+                <img src="{{add.img.url}}" class="products-image" alt="product-image">
+            </div>
+
+            <div class="col-12 col-md-6">
+              <h5 class="mt-1 mx-2">{{add.name}}  {% if not add.disable %} <span class="in-stock">In Stock</span><br><br> {% else %}<span class="out-stock">Out off Stock</span></h5><br>{% endif %} 
+              {% if add.new %}
+              <span class="new mx-2 ">NEW</span><br><br>{% else %} <span class="used">USED</span><br><br>
+              {% endif %}
+              <span class="mx-2">Manufacturer: {{add.manafacture}}</span><br>
+              <span class="mx-2">Model: {{add.model}}</span><br>
+              
+              <span class="mx-2">Price: ${{add.price}}</span> <br> 
+              <button class="btn my-3 view-more mx-2">View More</button>
+            </div>
+
+            <div class="col-12 col-md-3 my-auto">
+              <div class="row">
+                <div class="col-12 location my-1">
+                  <span class=""><i class="fa-solid fa-location-dot"></i>&nbsp; {{add.location}} </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 location my-1">
+                  <span class=""> For latest Price and Pictures </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 d-grid">
+                  <button  class="btn c-btn mx-2">Contact Seller</button>
+                </div>
+              </div>
+              <div class="row my-1">
+                <div class="col-12 text-center ">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa-thin fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+        <!-- card2 end  -->
+      </div>
+      
+      <nav aria-label="Page navigation example" class="mt-5">
+        <ul class="pagination justify-content-center"> 
+        
+          {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1" >&laquo; First</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+          </li>
+          {% endif %}
+        
+          {% if page_obj.number|add:'-2' >= 1 %}  
+          <li class="page-item">
+            <a class="page-link" href="?page=1">1</a>
+          </li>
+          {% if page_obj.number > 3 %}
+          <li class="page-item">
+            <a class="page-link disabled" href="?page={{page_obj.number|add:'-2'}}">&hellip;</a>
+          </li>
+          {% endif %}
+          {% endif %}
+        
+      
+          
+          {% for i in page_obj.paginator.page_range %}
+          {% if i > page_obj.number|add:'-2' and i < page_obj.number|add:'2' %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+          </li>
+          {% endif %}
+          {% endfor %}
+      
+          
+          {% if page_obj.paginator.num_pages >= page_obj.number|add:'2' %}
+          {% if page_obj.paginator.num_pages > page_obj.number|add:'2' %}
+          <li class="page-item">
+            <a class="page-link " href="#">&hellip;</a>
+          </li>
+          {% endif %}
+      
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+          </li>
+          {% endif %}
+      
+      
+        
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{page_obj.paginator.num_pages}}">Last &raquo;</a>
+          </li>
+          
+          {% endif %}
+        
+      
+        </ul>
+      </nav>   
+
+      {% endblock content %}
+
+      
+

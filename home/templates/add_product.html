@@ -1,0 +1,178 @@
+{% extends 'home.html'%}
+
+{% load static %}
+{% static "images" as baseUrl %}      
+
+{% block content %}
+      
+
+
+
+
+
+<div class="container mt-5">
+
+    <!-- SIGNUP section start -->
+    <div class="row l1 mb-5">
+        <div class="col-lg-6 col-md-8 col-10 border p-3">
+            <h1 class="l2">Add New Product</h1>
+            <hr class="mx-auto" width="80%">
+            
+            <form action="/add_product" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+
+                <div>
+                    <label for="name" class="form-label my-3">Product Name</label>
+                    <input required type="text" name="name" class="form-control cft1" placeholder="Enter Product Name"  >    
+                </div>
+                <div>
+                    <label for="name" class="form-label my-3">Catagory</label>
+                    <select required name="catagory" class="form-control cft1" id="#">
+                        <option selected>Backhoe Excavators</option>
+                        <option value="Backhoe Excavators">Backhoe Excavators</option>
+                        <option value="Crawler Excavators">Crawler Excavators</option>
+                        <option value="Wheeled Excavators">Wheeled Excavators</option>
+                        <option value="Skid Steer Excavators">Skid Steer Excavators</option>
+                        <option value="Long Reach Excavators">Long Reach Excavators</option>
+                        <option value="Mini Excavators">Mini Excavators</option>
+                        <option value="Power Shovel Excavators">Power Shovel Excavators</option>
+                        <option value="Amphibious Excavators">Amphibious Excavators</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <label for="model" class="form-lable my-3">Model</label>
+                        <input required type="text" name="model" class="form-control cft1" placeholder="Entar Model">
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <label for="username" class="form-label my-3">Manafacturer</label>
+                  <input required type="text" name="manafacture" class="form-control cft1" placeholder="Enter Manafacturer Name"  >
+
+                    </div>
+                </div>
+                <div>
+                    <label for="location" class="form-lable my-3">Location</label>
+                    <input required type="text" name="location" class="form-control cft1" placeholder="Entar Location">
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <label for="price" class="form-lable my-3">Price</label>
+                        <input required type="number" min="0" step="1" name="price" class="form-control cft1" placeholder="Entar Price">
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <label for="new" class="form-lable my-3">Condition</label> <br>
+                        <div class="form-check form-check-inline mt-3">
+                            <input required class="form-check-input mt-1" name="new"  type="radio"  id="inlineRadio1" value="True">
+                            <label class="form-check-label" for="inlineRadio1">New</label>
+                        </div>
+                        <div class="form-check form-check-inline mt-3">
+                            <input required class="form-check-input mt-1" name="new" type="radio"  id="inlineRadio2" value="False">
+                            <label class="form-check-label" for="inlineRadio2">Used</label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label for="location" class="form-lable my-3">Images</label>
+                    
+                </div>
+                <div class="row" id="row">
+                    <div class="col-md-3">
+                        <div id="preview" ></div>
+                        <div class="upload-btn text-center" id="upload-btn">
+                            <label for="image_input" class="upload-label" id="upload-label">  <i class="fa-sharp fa-solid fa-upload"></i> Upload</label>
+                            <input required class="form-control p1" id="image_input" name="img" type="file" id="formFile" accept="image/*" onchange="getImagePreview(event, 'preview2')" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="preview2" ></div>
+                        <div class="upload-btn text-center" id="upload-btn">
+                            <label for="image_input2" class="upload-label" id="upload-label">  <i class="fa-sharp fa-solid fa-upload"></i> Upload</label>
+                            <input value="none" class="form-control p1" id="image_input2" name="img2" type="file" id="formFile" accept="image/*" onchange="getImagePreview2(event, 'preview3')" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="preview3" ></div>
+                        <div class="upload-btn text-center" id="upload-btn">
+                            <label for="image_input3" class="upload-label" id="upload-label">  <i class="fa-sharp fa-solid fa-upload"></i> Upload</label>
+                            <input value="none" class="form-control p1" id="image_input3" name="img3" type="file" id="formFile" accept="image/*" onchange="getImagePreview3(event, 'preview4')" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="preview4" ></div>
+                        <div class="upload-btn text-center" id="upload-btn">
+                            <label for="image_input4" class="upload-label" id="upload-label">  <i class="fa-sharp fa-solid fa-upload"></i> Upload</label>
+                            <input value="none" class="form-control p1" id="image_input4" name="img4" type="file" id="formFile" accept="image/*" onchange="getImagePreview4(event, 'preview5')" style="display: none;">
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div id="preview5" ></div>
+                        <div class="upload-btn text-center" id="upload-btn">
+                            <label for="image_input5" class="upload-label" id="upload-label">  <i class="fa-sharp fa-solid fa-upload"></i> Upload</label>
+                            <input  class="form-control p1" id="image_input5" name="img5" type="file" id="formFile" accept="image/*" onchange="getImagePreview5(event, 'preview6')" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="preview6" ></div>
+                        <div class="upload-btn text-center" id="upload-btn">
+                            <label for="image_input6" class="upload-label" id="upload-label">  <i class="fa-sharp fa-solid fa-upload"></i> Upload</label>
+                            <input  class="form-control p1" id="image_input6" name="img6" type="file" id="formFile" accept="image/*" onchange="getImagePreview6(event, 'preview7')" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="preview7" ></div>
+                        <div class="upload-btn text-center" id="upload-btn">
+                            <label for="image_input7" class="upload-label" id="upload-label">  <i class="fa-sharp fa-solid fa-upload"></i> Upload</label>
+                            <input  class="form-control p1" id="image_input7" name="img7" type="file" id="formFile" accept="image/*" onchange="getImagePreview7(event, 'preview8')" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="preview8" ></div>
+                        <div class="upload-btn text-center" id="upload-btn">
+                            <label for="image_input8" class="upload-label" id="upload-label">  <i class="fa-sharp fa-solid fa-upload"></i> Upload</label>
+                            <input  class="form-control p1" id="image_input8" name="img8" type="file" id="formFile" accept="image/*" onchange="getImagePreview8(event, 'preview9')" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="preview9" ></div>
+                        <div class="upload-btn text-center" id="upload-btn">
+                            <label for="image_input9" class="upload-label" id="upload-label">  <i class="fa-sharp fa-solid fa-upload"></i> Upload</label>
+                            <input  class="form-control p1" id="image_input9" name="img9" type="file" id="formFile" accept="image/*" onchange="getImagePreview9(event, 'preview10')" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="preview10" ></div>
+                        <div class="upload-btn text-center" id="upload-btn">
+                            <label for="image_input10" class="upload-label" id="upload-label">  <i class="fa-sharp fa-solid fa-upload"></i> Upload</label>
+                            <input  class="form-control p1" id="image_input10" name="img10" type="file" id="formFile" accept="image/*" onchange="getImagePreview10(event,)" style="display: none;">
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <div>
+                    <label for="#" class="form-label my-3">Discription</label>
+
+                    <textarea class="form-control" name="discription" id="exampleFormControlTextarea1" placeholder="Enter More Details" rows="10"></textarea>
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                  <div class="col3"> 
+                      <button class="btn cb1 my-3" >ADD PRODUCT</button>
+                  </div>
+                  
+                </div>
+              </form>
+              
+              
+        </div>
+    </div>
+    <!-- SIGNUP section end -->
+
+</div>
+
+
+
+{% endblock content %}
